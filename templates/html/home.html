@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Object Detection by Frankle</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class="site-wrapper">
+
+      <div class="container" style="margin-top: 2%">
+        <h3 style="text-align: center;">Object Detection and Recognition in Images by Frankle Muchahary</h3>
+      </div>  
+    
+
+    <hr>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <div>
+        	<p>
+        		This application has two basic parts. The REST API and the <a href="http://35.196.101.87:8080/ImgDetWeb">Web Interface</a>. The <a href="http://35.196.101.87:8080/ImgDetWeb">Web Interface for Detection and Recognition of Objects in Images and Videos</a> can be accessed through this <a href="http://35.196.101.87:8080/ImgDetWeb">link</a>. Info on how to use the API is given below. 
+        	</p>
+
+        	<hr>
+            <h2 style="color:black">RESTful API</h2>
+            <br>
+            <h5 style="color:black">How to Use the API</h5>  
+            <br>
+            <p>
+            	The API can be called like shown in the python code snippet below. Something similar can also be done using other languages.
+            </p>
+            
+            <pre>
+            		import requests
+			API_URL = 'http://35.196.101.87:8080/obj_det_api'
+			IMG_PATH = '/home/frankle/something/something/image_folder/some_image.jpg'
+			files = {'file': open(IMG_PATH, 'rb')}
+			r = requests.post(API_URL, files=files)
+			print(r.json())
+			</pre>
+
+			<p>
+            	If all the operations are performed successfully, the above code snippet will produce a response which will look something like the following:
+            </p>
+            
+            <pre>
+            		{
+            			'predictions': {'bicycle': '70.86 %', 'person': '63.84 %'}, 
+            			'message': 'Photo Uploaded and Predictions Made', 
+            			'status': 'success'
+            		}
+			</pre>
+            
+        </div>	
+      </div>
+
+      <br>
+      <hr>
+       
+    </div>
+
+    </div>
+
+</body>
+</html>
