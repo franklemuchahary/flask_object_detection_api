@@ -7,7 +7,7 @@ import subprocess
 
 UPLOAD_FOLDER = '/opt/REST_API/static/web_img_uploads'
 UPLOAD_FOLDER_VIDEO = '/opt/REST_API/static/web_vid_uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
 ALLOWED_EXTENSIONS_VIDEO = set(['mp4'])
 
 
@@ -39,9 +39,14 @@ def upload_file_from_web():
             file_path = os.path.join(UPLOAD_FOLDER, filename)
             file.save(file_path)
             #call ML function
-            result_file_path = obj_det_ml(file_path)
-            return render_template('html/show_result_image.html', result=result_file_path)
-
+            result_file_path, result_dict = obj_det_ml(file_path)
+            result = {
+	    	'file_path': result_file_path,
+		'data': result_dict	
+	    }
+	    return render_template('html/show_result_image.html', result=result)
+	else:
+	    return render_template('html/error_page.html')
 
 '''
 The Code Below Deals with Video Uploads
@@ -68,7 +73,8 @@ def upload_video_from_web():
             result_file_path = video_obj_det_ml(file_path)
             #result_file_path = file_path
             return render_template('html/show_result_video.html', result=result_file_path)
-
+	else:
+            return render_template('html/error_page.html')
 
 
 

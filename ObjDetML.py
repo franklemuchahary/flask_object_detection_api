@@ -71,7 +71,7 @@ def object_detection_funct(image_path, api_call=True, video_file=False):
                     classes_predicted = output_dict['class'][0:len(scores_predicted)].astype(np.int32)
                     results_dict = dict()
                     for i in range(0,len(classes_predicted)):
-                        results_dict[category_map[classes_predicted[i]]['name']] = str(round(
+                        results_dict[str(i)+'_'+str(category_map[classes_predicted[i]]['name'])] = str(round(
                             scores_predicted[i]*100,2))+" %"
                     return results_dict
                 else:
@@ -89,7 +89,15 @@ def object_detection_funct(image_path, api_call=True, video_file=False):
 		    img_path_to_return = DIR+'/image'+str(num_of_files_in_dir)+'.png'
                     result_img = Image.fromarray(image_np, 'RGB')
                     result_img.save(final_image_path)
-                    return img_path_to_return
+
+		    scores_predicted = output_dict['score'][output_dict['score'] > 0.4]
+                    classes_predicted = output_dict['class'][0:len(scores_predicted)].astype(np.int32)
+                    results_dict = dict()
+                    for i in range(0,len(classes_predicted)):
+                        results_dict[str(i)+'_'+str(category_map[classes_predicted[i]]['name'])] = str(round(
+                            scores_predicted[i]*100,2))+" %"
+
+                    return img_path_to_return, results_dict
             else:
                 reader = imageio.get_reader(image_path)
                 fps = reader.get_meta_data()['fps']

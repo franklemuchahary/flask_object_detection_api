@@ -18,7 +18,10 @@
 	</div>
 
 	<div class="container">
-		<img src="{{ result }}" class="img-thumbnail" height="500" width="600">
+		<img src="{{ result.file_path }}" class="img-thumbnail" height="500" width="600">
+	{% for key,value in result.data.iteritems() %}	
+	<p>{{ key }} --> {{ value }}</p><br>
+	{% endfor %}
 	</div>
 
 </body>
