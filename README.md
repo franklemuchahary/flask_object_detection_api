@@ -6,6 +6,10 @@ It can also be used to identify the various objects present in a short video.
 
 Used `Python`, `Flask`, `Tensorflow` and pre-trained tensorflow models for the application and configured Apache web server to run the application.
 
+Sample Results:  
+[Image Results](static/img_results/)  
+[Video Results](static/vid_results/)
+
 The ML model has currently been trained to identify the objects given below but can be trained to identify other objects too.
 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 
 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 
